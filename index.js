@@ -1,5 +1,5 @@
 
-     
+     // Coded by Kassim Mohamed, on october 21 2021
       // create gameRound and initilize it with zero
       let gameRound = 1;
      // create userScore variable and assign it zero
