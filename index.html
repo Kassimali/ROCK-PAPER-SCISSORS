@@ -8,6 +8,10 @@
     <title>Document</title>
   </head>
   <body>
+    <button class="rocket">rocket</button>
+    <button class="paper">paper</button>
+    <button class="scissors">scissors</button>
+    <div class="result">result</div>
     <script>
       // create gameRound and initilize it with zero
       let gameRound = 1;
@@ -16,6 +20,7 @@
       // create computerScore variable and assign  it zero;
       let computerScore = 0;
       // create function game
+      let userSelection = "";
       function randomGenerator(arrayLen) {
         let theRandomNumber = Math.floor(Math.random() * arrayLen);
 
@@ -76,19 +81,21 @@
         }
         // console the message
         console.log(message);
+        return message;
       }
 
-      function game() {
+      function game(userSelection) {
         // create userSelection variable to hold value entered by the user
-        let userSelection = prompt("enter your choice");
 
+        //let userSelection = prompt("enter your choice");
+        let result = "";
         userSelection = userScore.toString().toLowerCase();
-
+        console.log(userSelection);
         // call computerPlayFunction and store the result in computer selection variable
         let computerSelection = computerPlay();
         // call playRound and pass userSelection and ComputerSelection as arguments and
         // and store the returned string into result variable
-        playRound(userSelection, computerSelection);
+        result = playRound(userSelection, computerSelection);
 
         // if gameRound==5
         if (gameRound === 5) {
@@ -115,9 +122,20 @@
 
         // increment gameRound;
         gameRound++;
+        return result;
       }
-      for (let i = 0; i < 5; i++) {
-        game();
+      // for (let i = 0; i < 5; i++) {
+      // game();
+      //}
+      const buttons = document.querySelectorAll("button");
+      let resultdiv = document.querySelector(".result");
+      buttons.forEach((button) => button.addEventListener("click", test));
+      function test(e) {
+        //console.log(this.classList.value);
+
+        userSelection = this.classList.value;
+        let result = game(userSelection);
+        resultdiv.textContent = result;
       }
     </script>
   </body>
